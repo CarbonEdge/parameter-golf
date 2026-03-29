@@ -26,7 +26,7 @@ PYTHON="${PYTHON:-/c/Users/HomePc/.conda/envs/ltxvideo/python.exe}"
 LOCAL_GPU="${LOCAL_GPU:-1}"  # set to 0 on H100 to use torchrun
 if [ "$LOCAL_GPU" = "1" ]; then
     RUNNER="$PYTHON"
-    LOCAL_ARGS="TORCHDYNAMO_DISABLE=1 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True TRAIN_SEQ_LEN=512 TRAIN_BATCH_TOKENS=65536 VAL_BATCH_SIZE=8192"
+    LOCAL_ARGS="TORCHDYNAMO_DISABLE=1 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True TRAIN_SEQ_LEN=512 TRAIN_BATCH_TOKENS=65536 VAL_BATCH_SIZE=65536"
 else
     RUNNER="$PYTHON -m torch.distributed.run --standalone --nproc_per_node=8"
     LOCAL_ARGS=""
